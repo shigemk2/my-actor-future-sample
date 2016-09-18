@@ -18,5 +18,8 @@ object Hello {
 
     val future1: Future[Any] = actor ? "hi"
     val future2: Future[Any] = actor ? "hello"
+
+    val future3: Future[Int] = for(f <- future1) yield f.asInstanceOf[String].length
+    val future4: Future[Int] = future2.map { _.asInstanceOf[String].length }
   }
 }
