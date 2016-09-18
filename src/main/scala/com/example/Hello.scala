@@ -35,5 +35,8 @@ object Hello {
     } {
       println("future3 + future4 = %d" format (f3 + f4))
     }
+    
+    val future5 = future4.filter { _ == 0}
+    for (f <- future5) println("future5 = %d" format f)
   }
 }
