@@ -28,5 +28,12 @@ object Hello {
     future4.foreach { f =>
       println("future4 = %d" format f)
     }
+
+    for {
+      f3 <- future3
+      f4 <- future4
+    } {
+      println("future3 + future4 = %d" format (f3 + f4))
+    }
   }
 }
