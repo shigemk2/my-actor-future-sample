@@ -35,8 +35,20 @@ object Hello {
     } {
       println("future3 + future4 = %d" format (f3 + f4))
     }
-    
+
     val future5 = future4.filter { _ == 0}
     for (f <- future5) println("future5 = %d" format f)
+
+    val futureList: List[Future[Any]] = List[String]("a", "aa", "aaa").map { actor ? _ }
+    val futureLenghtList: List[Future[Int]] =
+      for (future <- futureList) yield
+        for (f <- future) yield f.asInstanceOf[String].length
+    val futureSum: Future[Int] =
+      for (lengthList <- Future.sequence(futureLenghtList)) yield
+        lengthList.reduceLeft{ (l, f) => l + f }
+    for (f <- futureSum)
+      println("sum = %d" format f)
+
+    system.terminate()
   }
 }
