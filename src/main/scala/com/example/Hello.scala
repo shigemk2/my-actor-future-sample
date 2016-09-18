@@ -21,5 +21,12 @@ object Hello {
 
     val future3: Future[Int] = for(f <- future1) yield f.asInstanceOf[String].length
     val future4: Future[Int] = future2.map { _.asInstanceOf[String].length }
+
+    for(f <- future3) {
+      println("future3 = %d" format f)
+    }
+    future4.foreach { f =>
+      println("future4 = %d" format f)
+    }
   }
 }
