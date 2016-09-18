@@ -6,6 +6,7 @@ import akka.util.Timeout
 
 import scala.concurrent.Future
 import scala.concurrent.duration._
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 object Hello {
